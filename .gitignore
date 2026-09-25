@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+config/
+debug/
+_ui_preview.png
+.venv-build/
+build/
+dist/
+_work/

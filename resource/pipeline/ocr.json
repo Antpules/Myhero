@@ -1,0 +1,14 @@
+{
+    "OCR_通用文字识别": {
+        "recognition": "OCR",
+        "roi": [0, 0, 0, 0],
+        "action": "DoNothing"
+    },
+    "OCR_混沌千域标题示例": {
+        "recognition": "OCR",
+        "roi": [80, 15, 180, 70],
+        "expected": "混沌千域",
+        "only_rec": true,
+        "action": "DoNothing"
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "嘉年华刷取": {
+        "next": [
+            "确认嘉年华挑战界面",
+            "识别混沌千域并点击嘉年华"
+        ]
+    },
+    "嘉年华_自动分解": {
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "AutoDecompose",
+        "next": [
+            "确认嘉年华挑战界面",
+            "识别混沌千域并点击嘉年华"
+        ]
+    },
+    "打开嘉年华挑战界面": {
+        "next": [
+            "确认嘉年华挑战界面",
+            "识别混沌千域并点击嘉年华"
+        ]
+    },
+    "识别混沌千域并点击嘉年华": {
+        "recognition": "TemplateMatch",
+        "template": "混沌千域/混沌千域标题.png",
+        "roi": [0, 0, 300, 120],
+        "threshold": 0.82,
+        "order_by": "Score",
+        "action": "Click",
+        "target": [1016, 337],
+        "post_delay": 1000,
+        "next": [
+            "确认嘉年华挑战界面"
+        ]
+    },
+    "确认嘉年华挑战界面": {
+        "recognition": "TemplateMatch",
+        "template": "混沌千域/嘉年华面板标题.png",
+        "roi": [880, 0, 400, 140],
+        "threshold": 0.82,
+        "order_by": "Score",
+        "action": "DoNothing",
+        "next": [
+            "嘉年华_点击前往"
+        ]
+    },
+    "嘉年华_点击前往": {
+        "recognition": "TemplateMatch",
+        "template": "混沌千域/嘉年华面板标题.png",
+        "roi": [880, 0, 400, 140],
+        "threshold": 0.82,
+        "action": "Click",
+        "target": [1090, 686],
+        "post_delay": 1200,
+        "next": [
+            "嘉年华_执行战斗"
+        ]
+    },
+    "嘉年华_执行战斗": {
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "CarnivalBattle"
+    }
+}

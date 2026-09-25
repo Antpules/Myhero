@@ -1,0 +1,61 @@
+{
+    "选择石板并前往": {
+        "next": [
+            "石板_已在石板界面",
+            "石板_打开石板界面",
+            "石板_进入嘉年华"
+        ]
+    },
+    "石板_已在石板界面": {
+        "recognition": "TemplateMatch",
+        "template": "混沌千域/石板界面标志.png",
+        "roi": [300, 215, 370, 75],
+        "threshold": 0.88,
+        "action": "DoNothing",
+        "next": [
+            "选择石板"
+        ]
+    },
+    "石板_打开石板界面": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "混沌千域/石板奖励槽.png",
+            "混沌千域/石板奖励槽_已放置.png"
+        ],
+        "roi": [940, 545, 320, 130],
+        "threshold": 0.8,
+        "action": "Click",
+        "target": [1020, 593],
+        "post_delay": 1800,
+        "next": [
+            "石板_已在石板界面",
+            "石板_打开石板界面"
+        ]
+    },
+    "石板_进入嘉年华": {
+        "recognition": "TemplateMatch",
+        "template": "混沌千域/嘉年华入口.png",
+        "roi": [700, 220, 520, 260],
+        "threshold": 0.82,
+        "action": "Click",
+        "target": [1016, 337],
+        "post_delay": 1500,
+        "next": [
+            "石板_已在石板界面",
+            "石板_打开石板界面",
+            "石板_进入嘉年华"
+        ]
+    },
+    "选择石板": {
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "SelectStones",
+        "custom_action_param": {
+            "bound_only": true
+        },
+        "post_delay": 500,
+        "next": [
+            "嘉年华_点击前往"
+        ]
+    }
+}

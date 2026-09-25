@@ -1,0 +1,148 @@
+{
+    "interface_version": 2,
+    "name": "BraveBangBang",
+    "label": "勇者邦邦",
+    "version": "0.6.0",
+    "description": "勇者邦邦嘉年华自动刷取助手。",
+    "controller": [
+        {
+            "name": "Android",
+            "label": "安卓模拟器 / 设备",
+            "type": "Adb",
+            "display_short_side": 720,
+            "display_raw": false
+        }
+    ],
+    "resource": [
+        {
+            "name": "Default",
+            "label": "默认资源",
+            "path": [
+                "resource"
+            ],
+            "controller": [
+                "Android"
+            ]
+        }
+    ],
+    "task": [
+        {
+            "name": "CarnivalFarm",
+            "label": "嘉年华刷取",
+            "entry": "嘉年华刷取",
+            "default_check": true,
+            "description": "自动进入嘉年华、控制角色完成战斗并在结算后返回千域大地图。",
+            "option": [
+                "SelectStones",
+                "AutoDecompose",
+                "RepeatCount"
+            ]
+        }
+    ],
+    "option": {
+        "SelectStones": {
+            "type": "switch",
+            "label": "选择石板",
+            "description": "勾选后展开石板界面并自动选择三个可用石板。",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "label": "启用",
+                    "option": [
+                        "BoundStones"
+                    ],
+                    "pipeline_override": {
+                        "确认嘉年华挑战界面": {
+                            "next": [
+                                "石板_打开石板界面"
+                            ]
+                        },
+                        "选择石板": {
+                            "custom_action_param": {
+                                "bound_only": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "label": "关闭"
+                }
+            ]
+        },
+        "BoundStones": {
+            "type": "switch",
+            "label": "选择绑定石板",
+            "description": "勾选后跳过未绑定石板；不勾选时选择任意可用石板。",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "label": "启用",
+                    "pipeline_override": {
+                        "选择石板": {
+                            "custom_action_param": {
+                                "bound_only": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "label": "关闭"
+                }
+            ]
+        },
+        "AutoDecompose": {
+            "type": "switch",
+            "label": "自动分解",
+            "description": "开始刷取前执行一次，之后每完成 5 轮再执行一次。",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "label": "启用",
+                    "pipeline_override": {
+                        "嘉年华刷取": {
+                            "next": [
+                                "嘉年华_自动分解"
+                            ]
+                        },
+                        "嘉年华_执行战斗": {
+                            "custom_action_param": {
+                                "auto_decompose": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "label": "关闭"
+                }
+            ]
+        },
+        "RepeatCount": {
+            "type": "input",
+            "label": "循环次数",
+            "description": "完整刷取并返回千域大地图后计为一轮，可输入 1–999。",
+            "inputs": [
+                {
+                    "name": "count",
+                    "label": "刷取轮数",
+                    "default": "1",
+                    "pipeline_type": "int",
+                    "verify": "^[1-9]\\d{0,2}$",
+                    "pattern_msg": "请输入 1–999 的正整数"
+                }
+            ],
+            "pipeline_override": {
+                "嘉年华_执行战斗": {
+                    "custom_action_param": {
+                        "repeat_count": "{count}"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "OCR": {
+        "recognition": "OCR",
+        "model": "",
+        "threshold": 0.3,
+        "order_by": "Horizontal"
+    }
+}
